@@ -1,20 +1,30 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			contacts: []
 		},
 		actions: {
+			getContacts: () => {
+				fetch("https://assets.breatheco.de/apis/fake/contact/agenda/c-chimie")
+				.then((response) => response.json())
+				.then((data) => setStore({contacts: data}));
+			},
+			addContact: (data) => {
+				fetch("https://assets.breatheco.de/apis/fake/contact/", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify(data),
+				})
+				.then((response) => response.json())
+				.then((info) => {
+					let previous = getStore().contacts
+					setStore({
+						contacts: [...previous, info]
+					})
+				})
+			},
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
