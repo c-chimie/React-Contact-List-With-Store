@@ -7,6 +7,7 @@ import injectContext from "./store/appContext";
 
 import { AddContact } from "./component/AddContact";
 import { ContactCard } from "./component/ContactCard";
+import editContact from "./views/editContact";
 
 //create your first component
 const Layout = () => {
@@ -20,6 +21,7 @@ const Layout = () => {
         <Switch>
           <Route exact path="/" component={Home}></Route>
           <Route exact path="/createContact" component={createContact}></Route>
+		  <Route exact path="/editContact/:id" component={editContact}></Route>
         </Switch>
       </BrowserRouter>
     </div>

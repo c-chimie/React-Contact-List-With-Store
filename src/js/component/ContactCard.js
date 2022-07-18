@@ -1,7 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Context } from "../store/appContext";
 
 const ContactCard = (props) => {
+	const { store, actions } = useContext(Context);
 	return (
 		<li className="list-group-item">
 			<div className="row w-100">
@@ -14,10 +18,12 @@ const ContactCard = (props) => {
 				</div>
 				<div className="col-12 col-sm-6 col-md-9 text-center text-sm-left">
 					<div className=" float-right">
+						<Link to={`/editContact/${props.obj.id}`}>
 						<button className="btn">
 							<i className="fas fa-pencil-alt mr-3"></i>
 						</button>
-						<button className="btn">
+						</Link>
+						<button onClick={() => actions.deleteContact(props.obj.id)} className="btn">
 							<i className="fas fa-trash-alt"></i>
 						</button>
 					</div>
