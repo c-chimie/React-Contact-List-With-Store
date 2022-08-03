@@ -29,8 +29,8 @@ const Home = () => {
           aria-expanded="true"
         >
           <ul className="list-group pull-down" id="contact-list">
-            {contacts.map((item) => {
-              return <ContactCard obj={item} />;
+            {contacts.map((item, i) => {
+              return <ContactCard key={i} obj={item} />;
             })}
           </ul>
         </div>
